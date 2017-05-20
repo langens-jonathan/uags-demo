@@ -1,0 +1,26 @@
+---
+graphsInfo:
+- name: "uuid graph"
+  type: "hive"
+  typeRestriction: ""
+  predicateRestriction: "<http://mu.semte.ch/vocabularies/core/uuid>"
+  fallthroughRestriction: false
+  graph: "http://mu.semte.ch/uuid"
+- name: "personalGraph-shoppingCart"
+  type: "personal"
+  typeRestriction: "<http://example.com/shopping/ShoppingCart>"
+  predicateRestriction: ""
+  fallthroughRestriction: false
+  graph: "http://mu.semte.ch/personal"
+- name: "personalGraph-shoppingCartPredicate"
+  type: "personal"
+  typeRestriction: ""
+  predicateRestriction: "<http://example.com/shopping/containsItem>"
+  fallthroughRestriction: false
+  graph: "http://mu.semte.ch/personal"
+- name: "rest basket"
+  type: "hive"
+  typeRestriction: ""
+  predicateRestriction: ""
+  fallthroughRestriction: true
+  graph: "http://mu.semte.ch/application"

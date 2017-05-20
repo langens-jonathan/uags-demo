@@ -1,0 +1,16 @@
+scopes:
+  - type: personal
+    fallthrough: false
+    operatesOn: type
+    selector: "http://mu.semte.ch/core/Note"
+    graph: "http://mu.semte.ch/core/notes"
+  - type: hive
+    fallthrough: false
+    operatesOn: predicate
+    selector: "http://mu.semte.ch/vocabularies/uuid"
+    graph: "http://mu.semte.ch/example/uuids"
+  - type: hive
+    fallthrough: false
+    operatesOn: predicate
+    selector: "*"
+    graph: "http://mu.semte.ch/application"

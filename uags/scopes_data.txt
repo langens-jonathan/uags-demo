@@ -1,0 +1,47 @@
+# delete eveything query
+DELETE {
+GRAPH <http://protected/graphs>
+{ ?s ?p ?o } }
+WHERE
+{
+GRAPH <http://protected/graphs>
+{ ?s ?p ?o .} }
+
+# insert data query
+PREFIX mu: <http://mu.semte.ch/vocabularies>
+PREFIX mus: <http://mu.semte.ch/vocabularies/session>
+PREFIX auth: <http://mu.semte.ch/vocabularies/authorization/>
+
+WITH <http://protected/graphs>
+
+INSERT DATA
+{
+<http://users/Jonathan> a foaf:Person; foaf:name "Jonathan"; mu:uuid "UUIDJonathan"; auth:hasRight <http://grants/1>, <http://grants/2> , <http://grants/3> .
+
+<http://users/Aad> a foaf:Person; foaf:name "Aad"; mu:uuid "UUIDAad"; auth:hasRight <http://grants/1>, <http://grants/2> , <http://grants/3> .
+
+<http://users/Erika> a foaf:Person; foaf:name "Erika"; mu:uuid "UUIDErika"; auth:hasRight <http://grants/1>, <http://grants/2> , <http://grants/3> .
+
+<http://grants/1> a auth:Grant; mu:uuid "UUIDGrant1"; auth:operatesOn <http://mu.semte.ch/example/uuids>.
+
+<http://grants/2> a auth:Grant; mu:uuid "UUIDGrant2"; auth:operatesOn <http://mu.semte.ch/application>.
+
+<http://grants/3> a auth:Grant; mu:uuid "UUIDGrant3";  auth:operatesOn <http://mu.semte.ch/core/notes>.
+}
+
+
+# get graphs query - with priority
+
+PREFIX mu: <http://mu.semte.ch/vocabularies>
+PREFIX mus: <http://mu.semte.ch/vocabularies/session>
+PREFIX auth: <http://mu.semte.ch/vocabularies/authorization/>
+
+SELECT ?graph ?priority 
+WHERE
+{
+GRAPH <http://protected/graphs> {
+  ?user mu:uuid "UUIDJonathan" .
+  ?user auth:hasRight ?grant .
+  ?grant auth:operatesOn ?graph ; auth:updatePriority ?priority .
+}
+} ORDER BY ?priority
