@@ -16,6 +16,15 @@ on the configuration endpoint
 
 ## 1 Inserting a new shopping cart
 
+### Query
+```
+INSERT 
+{ 
+<http://shopping-carts/1> a <http://example.com/shopping/ShoppingCart> ; 
+<lastAccessed> "12.12.12" . 
+<http://test.com/test/1> <http://test.com/testFor> "no reason" . 
+}
+```
 ### CURL
 ```
 curl -X GET \
@@ -42,6 +51,16 @@ GRAPH <http://mu.semte.ch/personal/Jonathan>
 ```
 ## 2 Consulting your shopping carts
 
+### Query
+```
+SELECT * from <http://mu.semte.ch/application> 
+WHERE 
+{ ?
+s a <http://example.com/shopping/ShoppingCart> ; 
+?p ?o .
+}
+```
+
 ### CURL
 ```
 curl -X GET \
@@ -66,6 +85,14 @@ WHERE
 ```
 
 ## 3 Getting everything
+
+### Query
+```
+SELECT *
+WHERE {
+?s ?p ?o .
+}
+```
 
 ### CURL
 ```
